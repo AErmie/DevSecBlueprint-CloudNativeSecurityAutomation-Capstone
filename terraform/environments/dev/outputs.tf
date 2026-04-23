@@ -62,3 +62,23 @@ output "remediation_key_vault_name" {
   description = "Key Vault that stores remediation allow-list configuration."
   value       = var.remediation_enabled ? module.remediation_key_vault[0].vault_name : null
 }
+
+output "security_event_query_alert_id" {
+  description = "Scheduled query alert for Sentinel security events."
+  value       = var.observability_enabled ? module.security_event_query_alert[0].id : null
+}
+
+output "remediation_failure_query_alert_id" {
+  description = "Scheduled query alert for remediation failures."
+  value       = var.observability_enabled && var.remediation_enabled ? module.remediation_failure_query_alert[0].id : null
+}
+
+output "observability_workbook_id" {
+  description = "Workbook resource ID for Sentinel observability dashboard."
+  value       = var.observability_enabled ? module.observability_workbook[0].id : null
+}
+
+output "observability_workbook_display_name" {
+  description = "Workbook display name for Sentinel observability dashboard."
+  value       = var.observability_enabled ? module.observability_workbook[0].display_name : null
+}

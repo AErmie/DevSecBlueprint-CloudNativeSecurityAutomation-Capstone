@@ -90,6 +90,30 @@ variable "remediation_allowed_role_definition_ids_csv" {
   default     = ""
 }
 
+variable "observability_enabled" {
+  description = "Enable Phase 4 observability resources."
+  type        = bool
+  default     = true
+}
+
+variable "observability_alert_severity" {
+  description = "Severity level for Phase 4 scheduled query alerts."
+  type        = number
+  default     = 2
+}
+
+variable "observability_evaluation_frequency" {
+  description = "Evaluation frequency for observability scheduled query alerts."
+  type        = string
+  default     = "PT5M"
+}
+
+variable "observability_window_duration" {
+  description = "Window duration for observability scheduled query alerts."
+  type        = string
+  default     = "PT5M"
+}
+
 variable "tags" {
   description = "Required tags for all resources."
   type        = map(string)

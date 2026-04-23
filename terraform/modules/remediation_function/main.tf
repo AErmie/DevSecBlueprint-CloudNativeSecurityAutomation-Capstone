@@ -44,14 +44,14 @@ resource "azurerm_application_insights" "function" {
 }
 
 resource "azurerm_linux_function_app" "this" {
-  name                       = var.name
-  location                   = var.location
-  resource_group_name        = var.resource_group_name
-  service_plan_id            = azurerm_service_plan.function.id
-  storage_account_name       = azurerm_storage_account.function.name
-  storage_account_access_key = azurerm_storage_account.function.primary_access_key
+  name                        = var.name
+  location                    = var.location
+  resource_group_name         = var.resource_group_name
+  service_plan_id             = azurerm_service_plan.function.id
+  storage_account_name        = azurerm_storage_account.function.name
+  storage_account_access_key  = azurerm_storage_account.function.primary_access_key
   functions_extension_version = "~4"
-  https_only                 = true
+  https_only                  = true
 
   identity {
     type = "SystemAssigned"
