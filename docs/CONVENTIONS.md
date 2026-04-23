@@ -2,8 +2,8 @@
 
 ## Branching
 
-- One branch per phase.
-- All phase branches are merged to `main`.
+- Project history used one branch per phase.
+- Current model: feature branches target `main`.
 
 ## Naming
 

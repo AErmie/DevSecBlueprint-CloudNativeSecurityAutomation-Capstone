@@ -11,7 +11,7 @@ Project Sentinel builds a cloud security control plane that can:
 3. Record all actions for audit and reporting.
 4. Enforce guardrails through IaC and policy-as-code.
 
-This project is delivered in phases, with each phase implemented on its own branch.
+This project was delivered in phases, with each phase implemented on its own branch and merged to `main`.
 
 ## Cloud Mapping (AWS -> Azure)
 
