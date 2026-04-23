@@ -3,7 +3,7 @@
 ## Branching
 
 - One branch per phase.
-- Current branch: `phase-1-foundation`.
+- All phase branches are merged to `main`.
 
 ## Naming
 

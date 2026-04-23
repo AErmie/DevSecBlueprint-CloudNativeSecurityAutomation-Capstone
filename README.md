@@ -37,7 +37,7 @@ This project is delivered in phases, with each phase implemented on its own bran
 - Phase 2 completed: event detection and secure signal routing.
 - Phase 3 completed: automated remediation and secure responder runtime.
 - Phase 4 completed: centralized observability, alerts, and dashboard reporting.
-- Phase 5 in progress: policy-as-code gates and compliance enforcement.
+- Phase 5 completed: policy-as-code gates and compliance enforcement.
 
 ## Repository Layout
 
@@ -46,11 +46,21 @@ This project is delivered in phases, with each phase implemented on its own bran
 |-- .github/
 |   `-- workflows/
 |-- docs/
+|-- functions/
+|   `-- remediation/
+|-- policies/
+|   `-- opa/
 |-- terraform/
 |   |-- environments/dev/
 |   `-- modules/
+|       |-- action_group/
+|       |-- activity_log_alert/
 |       |-- diagnostic_logging/
+|       |-- key_vault/
 |       |-- log_analytics/
+|       |-- observability_workbook/
+|       |-- remediation_function/
+|       |-- scheduled_query_alert/
 |       `-- storage_account/
 |-- .editorconfig
 |-- .gitattributes
