@@ -35,3 +35,27 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Terraform plan artifacts
+*.tfplan
+tfplan.*
+
+# Log files
+*.log
+
+# Python cache (tooling)
+__pycache__/
+*.py[cod]
