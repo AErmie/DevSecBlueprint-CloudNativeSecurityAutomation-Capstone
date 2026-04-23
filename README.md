@@ -35,7 +35,8 @@ This project is delivered in phases, with each phase implemented on its own bran
 
 - Phase 1 completed: Azure foundation, monitored resource, and audit logging.
 - Phase 2 completed: event detection and secure signal routing.
-- Phase 3 in progress: automated remediation and secure responder runtime.
+- Phase 3 completed: automated remediation and secure responder runtime.
+- Phase 4 in progress: centralized observability, alerts, and dashboard reporting.
 
 ## Repository Layout
 
@@ -82,6 +83,13 @@ This project is delivered in phases, with each phase implemented on its own bran
 2. Key Vault-backed allow-list configuration for RBAC enforcement.
 3. Least-privilege RBAC assignments for remediation operations.
 4. Terraform outputs and docs to connect Action Group webhook routing.
+
+## Phase 4 Deliverables
+
+1. Scheduled query alerts for security event and remediation failure visibility.
+2. Shared workbook dashboard for event and remediation trend visualization.
+3. Centralized alert routing through existing Azure Monitor Action Group.
+4. Terraform outputs and docs for audit-oriented reporting.
 
 ## Validation Commands
 

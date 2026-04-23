@@ -12,6 +12,10 @@ remediation_enforce_rbac               = true
 remediation_storage_public_access      = true
 remediation_allowed_principal_ids_csv  = ""
 remediation_allowed_role_definition_ids_csv = ""
+observability_enabled                  = true
+observability_alert_severity           = 2
+observability_evaluation_frequency     = "PT5M"
+observability_window_duration          = "PT5M"
 
 # Optional receivers for alert routing. Set one or both before deployment.
 notification_email_address = null

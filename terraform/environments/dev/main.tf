@@ -17,6 +17,37 @@ locals {
     "allowed-principals"       = var.remediation_allowed_principal_ids_csv
     "allowed-role-definitions" = var.remediation_allowed_role_definition_ids_csv
   }
+
+  observability_workbook_data_json = jsonencode({
+    version = "Notebook/1.0"
+    items = [
+      {
+        type = 3
+        content = {
+          version       = "KqlItem/1.0"
+          queryType     = 0
+          resourceType  = "microsoft.operationalinsights/workspaces"
+          title         = "Security Event Trend"
+          query         = "AzureActivity | where OperationNameValue in ('Microsoft.Storage/storageAccounts/write','Microsoft.Authorization/roleAssignments/write','Microsoft.Authorization/roleAssignments/delete') | summarize Events=count() by bin(TimeGenerated, 1h), OperationNameValue | order by TimeGenerated asc"
+          visualization = "timechart"
+        }
+        name = "security-event-trend"
+      },
+      {
+        type = 3
+        content = {
+          version       = "KqlItem/1.0"
+          queryType     = 0
+          resourceType  = "microsoft.operationalinsights/workspaces"
+          title         = "Remediation Failures"
+          query         = "AppTraces | where Message has 'Remediation failed' | summarize Failures=count() by bin(TimeGenerated, 1h) | order by TimeGenerated asc"
+          visualization = "timechart"
+        }
+        name = "remediation-failure-trend"
+      }
+    ]
+    isLocked = false
+  })
 }
 
 data "azurerm_client_config" "current" {}
@@ -205,4 +236,56 @@ resource "azurerm_role_assignment" "remediation_key_vault_secrets_user" {
   scope                = module.remediation_key_vault[0].vault_id
   role_definition_name = "Key Vault Secrets User"
   principal_id         = module.remediation_function[0].principal_id
+}
+
+module "security_event_query_alert" {
+  source = "../../modules/scheduled_query_alert"
+  count  = var.observability_enabled ? 1 : 0
+
+  name                 = "alert-security-events-${var.environment}"
+  location             = azurerm_resource_group.core.location
+  resource_group_name  = azurerm_resource_group.core.name
+  scopes               = [module.log_analytics.workspace_id]
+  description          = "Alerts on security-relevant storage and RBAC operations tracked by Sentinel."
+  severity             = var.observability_alert_severity
+  enabled              = true
+  evaluation_frequency = var.observability_evaluation_frequency
+  window_duration      = var.observability_window_duration
+  query                = "AzureActivity | where OperationNameValue in ('Microsoft.Storage/storageAccounts/write','Microsoft.Authorization/roleAssignments/write','Microsoft.Authorization/roleAssignments/delete') | summarize EventCount=count()"
+  threshold            = 0
+  operator             = "GreaterThan"
+  action_group_ids     = [module.detection_action_group.id]
+  tags                 = var.tags
+}
+
+module "remediation_failure_query_alert" {
+  source = "../../modules/scheduled_query_alert"
+  count  = var.observability_enabled && var.remediation_enabled ? 1 : 0
+
+  name                 = "alert-remediation-failure-${var.environment}"
+  location             = azurerm_resource_group.core.location
+  resource_group_name  = azurerm_resource_group.core.name
+  scopes               = [module.log_analytics.workspace_id]
+  description          = "Alerts when remediation function logs runtime failures."
+  severity             = var.observability_alert_severity
+  enabled              = true
+  evaluation_frequency = var.observability_evaluation_frequency
+  window_duration      = var.observability_window_duration
+  query                = "AppTraces | where Message has 'Remediation failed' | summarize FailureCount=count()"
+  threshold            = 0
+  operator             = "GreaterThan"
+  action_group_ids     = [module.detection_action_group.id]
+  tags                 = var.tags
+}
+
+module "observability_workbook" {
+  source = "../../modules/observability_workbook"
+  count  = var.observability_enabled ? 1 : 0
+
+  location            = azurerm_resource_group.core.location
+  resource_group_name = azurerm_resource_group.core.name
+  display_name        = "wb-${var.project_name}-${var.environment}-sentinel"
+  source_id           = module.log_analytics.workspace_id
+  data_json           = local.observability_workbook_data_json
+  tags                = var.tags
 }
