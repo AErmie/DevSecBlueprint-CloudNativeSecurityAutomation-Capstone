@@ -12,5 +12,5 @@ deny[msg] {
   input.resource_type == "azurerm_role_assignment"
   contains(lower(input.scope), "/subscriptions/")
   not contains(lower(input.scope), "/resourcegroups/")
-  msg := "Subscription-scope role assignment requires explicit governance exception."
+  msg := "Subscription-scope role assignments are prohibited."
 }

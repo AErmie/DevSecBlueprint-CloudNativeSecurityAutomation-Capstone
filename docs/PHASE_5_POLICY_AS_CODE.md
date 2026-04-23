@@ -18,8 +18,9 @@ Phase 5 adds policy-as-code governance using CI gates and versioned policy defin
   - workflow: `.github/workflows/policy-gates.yml`
   - scanner: `tfsec`
 
-- Policy definition gate:
-  - ensure required policy files exist and are versioned
+- OPA policy gate:
+  - validates Rego syntax and formatting
+  - evaluates policies against sample violation inputs
 
 ## Policy Domains
 

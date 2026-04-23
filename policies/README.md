@@ -5,7 +5,7 @@ This folder contains policy-as-code controls for Phase 5 of Operation Sentinel.
 ## Enforcement gates
 
 - CI gate: `tfsec` runs on Terraform code in pull requests.
-- Policy files: OPA/Rego policies are versioned in `policies/opa`.
+- CI gate: OPA validates and evaluates Rego policy files in `policies/opa`.
 
 ## Included policy domains
 
@@ -17,4 +17,4 @@ This folder contains policy-as-code controls for Phase 5 of Operation Sentinel.
 1. Author or update Terraform in phase branch.
 2. Open pull request.
 3. Policy gate workflow blocks merge on security findings.
-4. Resolve findings or document approved exceptions.
+4. Resolve findings before merge.
