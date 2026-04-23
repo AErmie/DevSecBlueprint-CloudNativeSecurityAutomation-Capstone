@@ -63,3 +63,8 @@ tfplan.*
 # Python cache (tooling)
 __pycache__/
 *.py[cod]
+
+# Azure Functions local artifacts
+functions/**/node_modules/
+functions/**/local.settings.json
+functions/**/dist/

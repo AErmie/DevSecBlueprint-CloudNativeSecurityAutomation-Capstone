@@ -6,10 +6,19 @@ log_analytics_retention_days         = 90
 storage_public_network_access_enabled = true
 detection_enabled                     = true
 action_group_short_name               = "sentinelag"
+remediation_enabled                    = true
+remediation_service_plan_sku           = "FC1"
+remediation_enforce_rbac               = true
+remediation_storage_public_access      = true
+remediation_allowed_principal_ids_csv  = ""
+remediation_allowed_role_definition_ids_csv = ""
 
 # Optional receivers for alert routing. Set one or both before deployment.
 notification_email_address = null
 notification_webhook_uri   = null
+
+# For Phase 3, set notification_webhook_uri to the remediation function URL with key.
+# Example: https://<function-host>/api/remediationWebhook?code=<function-key>
 
 tags = {
   Environment        = "dev"

@@ -34,7 +34,8 @@ This project is delivered in phases, with each phase implemented on its own bran
 ## Current Status
 
 - Phase 1 completed: Azure foundation, monitored resource, and audit logging.
-- Phase 2 in progress: event detection and secure signal routing.
+- Phase 2 completed: event detection and secure signal routing.
+- Phase 3 in progress: automated remediation and secure responder runtime.
 
 ## Repository Layout
 
@@ -74,6 +75,13 @@ This project is delivered in phases, with each phase implemented on its own bran
    - storage account configuration changes
    - Azure RBAC role assignment writes and deletes
 3. Documentation that defines the handoff into automated remediation.
+
+## Phase 3 Deliverables
+
+1. Azure Function remediation endpoint with managed identity.
+2. Key Vault-backed allow-list configuration for RBAC enforcement.
+3. Least-privilege RBAC assignments for remediation operations.
+4. Terraform outputs and docs to connect Action Group webhook routing.
 
 ## Validation Commands
 
