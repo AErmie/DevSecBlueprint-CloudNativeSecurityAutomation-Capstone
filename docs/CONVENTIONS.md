@@ -2,8 +2,8 @@
 
 ## Branching
 
-- One branch per phase.
-- Current branch: `phase-1-foundation`.
+- Project history used one branch per phase.
+- Current model: feature branches target `main`.
 
 ## Naming
 

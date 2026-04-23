@@ -3,7 +3,7 @@ name: Policy Gates
 on:
   push:
     branches:
-      - phase-5-policy-as-code
+      - main
   pull_request:
 
 jobs:

@@ -25,7 +25,7 @@ variable "log_analytics_retention_days" {
 variable "storage_public_network_access_enabled" {
   description = "Enable public network access for storage account."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "detection_enabled" {

@@ -3,7 +3,7 @@ project_name = "sentinel"
 location     = "eastus2"
 
 log_analytics_retention_days         = 90
-storage_public_network_access_enabled = true
+storage_public_network_access_enabled = false
 detection_enabled                     = true
 action_group_short_name               = "sentinelag"
 remediation_enabled                    = true

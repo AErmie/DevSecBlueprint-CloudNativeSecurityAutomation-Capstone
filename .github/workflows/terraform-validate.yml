@@ -3,7 +3,7 @@ name: Terraform Validate
 on:
   push:
     branches:
-      - phase-1-foundation
+      - main
   pull_request:
 
 jobs:
