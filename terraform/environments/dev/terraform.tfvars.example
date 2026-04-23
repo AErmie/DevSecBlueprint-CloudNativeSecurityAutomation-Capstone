@@ -1,0 +1,14 @@
+environment = "dev"
+project_name = "sentinel"
+location     = "eastus2"
+
+log_analytics_retention_days         = 90
+storage_public_network_access_enabled = true
+
+tags = {
+  Environment        = "dev"
+  Project            = "OperationSentinel"
+  Owner              = "SecurityEngineering"
+  CostCenter         = "FINSEC"
+  DataClassification = "Confidential"
+}
