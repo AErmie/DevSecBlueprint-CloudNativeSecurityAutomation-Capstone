@@ -33,10 +33,8 @@ This project is delivered in phases, with each phase implemented on its own bran
 
 ## Current Status
 
-Branch: `phase-1-foundation`
-
-Phase 1 goal: define a fully coded foundation where a monitored Azure storage resource
-and its audit pipeline are ready to deploy, without actually deploying resources.
+- Phase 1 completed: Azure foundation, monitored resource, and audit logging.
+- Phase 2 in progress: event detection and secure signal routing.
 
 ## Repository Layout
 
@@ -58,7 +56,7 @@ and its audit pipeline are ready to deploy, without actually deploying resources
 `-- .yamllint.yml
 ```
 
-## Phase 1 Deliverables in This Branch
+## Phase 1 Deliverables
 
 1. Baseline repository governance files.
 2. Terraform code for Azure foundational resources:
@@ -68,6 +66,14 @@ and its audit pipeline are ready to deploy, without actually deploying resources
    - Diagnostic settings for storage service logs
 3. CI workflows for linting and Terraform validation.
 4. Architecture and implementation documentation.
+
+## Phase 2 Deliverables
+
+1. Azure Monitor Action Group for consistent signal routing.
+2. Activity Log Alerts for:
+   - storage account configuration changes
+   - Azure RBAC role assignment writes and deletes
+3. Documentation that defines the handoff into automated remediation.
 
 ## Validation Commands
 

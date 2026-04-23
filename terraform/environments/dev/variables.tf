@@ -28,6 +28,32 @@ variable "storage_public_network_access_enabled" {
   default     = true
 }
 
+variable "detection_enabled" {
+  description = "Enable Phase 2 detection resources."
+  type        = bool
+  default     = true
+}
+
+variable "action_group_short_name" {
+  description = "Short name for the Azure Monitor Action Group."
+  type        = string
+  default     = "sentinelag"
+}
+
+variable "notification_email_address" {
+  description = "Optional email receiver for detection alerts."
+  type        = string
+  default     = null
+  nullable    = true
+}
+
+variable "notification_webhook_uri" {
+  description = "Optional webhook receiver URI for detection alerts and future automation."
+  type        = string
+  default     = null
+  nullable    = true
+}
+
 variable "tags" {
   description = "Required tags for all resources."
   type        = map(string)
