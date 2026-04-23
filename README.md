@@ -36,7 +36,8 @@ This project is delivered in phases, with each phase implemented on its own bran
 - Phase 1 completed: Azure foundation, monitored resource, and audit logging.
 - Phase 2 completed: event detection and secure signal routing.
 - Phase 3 completed: automated remediation and secure responder runtime.
-- Phase 4 in progress: centralized observability, alerts, and dashboard reporting.
+- Phase 4 completed: centralized observability, alerts, and dashboard reporting.
+- Phase 5 in progress: policy-as-code gates and compliance enforcement.
 
 ## Repository Layout
 
@@ -90,6 +91,13 @@ This project is delivered in phases, with each phase implemented on its own bran
 2. Shared workbook dashboard for event and remediation trend visualization.
 3. Centralized alert routing through existing Azure Monitor Action Group.
 4. Terraform outputs and docs for audit-oriented reporting.
+
+## Phase 5 Deliverables
+
+1. Policy gate workflow for Terraform security scanning (`tfsec`).
+2. Versioned OPA/Rego policy definitions for storage and RBAC guardrails.
+3. Documentation of policy governance and merge-gate expectations.
+4. Repository structure that keeps controls and infrastructure code auditable together.
 
 ## Validation Commands
 

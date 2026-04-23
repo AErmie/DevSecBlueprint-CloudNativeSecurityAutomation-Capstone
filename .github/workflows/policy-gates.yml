@@ -1,0 +1,36 @@
+name: Policy Gates
+
+on:
+  push:
+    branches:
+      - phase-5-policy-as-code
+  pull_request:
+
+jobs:
+  tfsec:
+    name: Terraform Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          working_directory: terraform
+          additional_args: --minimum-severity MEDIUM
+
+  policy-files:
+    name: Policy File Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate policy files exist
+        run: |
+          test -f policies/opa/storage_guardrails.rego
+          test -f policies/opa/rbac_guardrails.rego
+          test -f docs/PHASE_5_POLICY_AS_CODE.md
