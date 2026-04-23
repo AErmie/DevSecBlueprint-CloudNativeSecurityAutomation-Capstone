@@ -42,3 +42,23 @@ output "role_assignment_delete_alert_id" {
   description = "Activity Log Alert ID for RBAC role assignment delete operations."
   value       = module.role_assignment_delete_alert.id
 }
+
+output "remediation_function_app_id" {
+  description = "Function App resource ID used for remediation."
+  value       = var.remediation_enabled ? module.remediation_function[0].function_app_id : null
+}
+
+output "remediation_function_app_name" {
+  description = "Function App name used for remediation."
+  value       = var.remediation_enabled ? module.remediation_function[0].function_app_name : null
+}
+
+output "remediation_function_webhook_url_template" {
+  description = "Webhook URL template for the remediation endpoint."
+  value       = var.remediation_enabled ? module.remediation_function[0].webhook_url_template : null
+}
+
+output "remediation_key_vault_name" {
+  description = "Key Vault that stores remediation allow-list configuration."
+  value       = var.remediation_enabled ? module.remediation_key_vault[0].vault_name : null
+}

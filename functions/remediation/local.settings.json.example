@@ -1,0 +1,15 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AZURE_SUBSCRIPTION_ID": "<subscription-id>",
+    "SECURITY_STORAGE_ACCOUNT_ID": "<storage-account-resource-id>",
+    "SECURITY_STORAGE_ACCOUNT_RESOURCE_GROUP": "<resource-group-name>",
+    "KEY_VAULT_URI": "https://<keyvault-name>.vault.azure.net/",
+    "ALLOWED_PRINCIPALS_SECRET_NAME": "allowed-principals",
+    "ALLOWED_ROLE_DEFINITIONS_SECRET_NAME": "allowed-role-definitions",
+    "ENFORCE_RBAC_REMEDIATION": "true",
+    "REMEDIATE_STORAGE_PUBLIC_ACCESS": "true"
+  }
+}

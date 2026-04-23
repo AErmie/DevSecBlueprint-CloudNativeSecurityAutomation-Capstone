@@ -54,6 +54,42 @@ variable "notification_webhook_uri" {
   nullable    = true
 }
 
+variable "remediation_enabled" {
+  description = "Enable Phase 3 remediation resources."
+  type        = bool
+  default     = true
+}
+
+variable "remediation_service_plan_sku" {
+  description = "SKU for the remediation Function service plan."
+  type        = string
+  default     = "FC1"
+}
+
+variable "remediation_enforce_rbac" {
+  description = "Whether RBAC remediation is enabled in the function app."
+  type        = bool
+  default     = true
+}
+
+variable "remediation_storage_public_access" {
+  description = "Whether storage public-access remediation is enabled."
+  type        = bool
+  default     = true
+}
+
+variable "remediation_allowed_principal_ids_csv" {
+  description = "Comma-separated allowed principal IDs for RBAC remediation."
+  type        = string
+  default     = ""
+}
+
+variable "remediation_allowed_role_definition_ids_csv" {
+  description = "Comma-separated allowed role definition IDs for RBAC remediation."
+  type        = string
+  default     = ""
+}
+
 variable "tags" {
   description = "Required tags for all resources."
   type        = map(string)
