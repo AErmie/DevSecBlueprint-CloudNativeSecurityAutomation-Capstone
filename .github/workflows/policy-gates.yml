@@ -1,0 +1,59 @@
+name: Policy Gates
+
+on:
+  push:
+    branches:
+      - phase-5-policy-as-code
+  pull_request:
+
+jobs:
+  tfsec:
+    name: Terraform Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          working_directory: terraform
+          additional_args: --minimum-severity MEDIUM
+          github_token: ${{ github.token }}
+
+  opa:
+    name: OPA Policy Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup OPA
+        uses: open-policy-agent/setup-opa@v2
+        with:
+          version: latest
+
+      - name: Validate policy files exist
+        run: |
+          test -f policies/opa/storage_guardrails.rego
+          test -f policies/opa/rbac_guardrails.rego
+          test -f docs/PHASE_5_POLICY_AS_CODE.md
+
+      - name: Check Rego formatting
+        run: |
+          opa fmt --fail policies/opa/storage_guardrails.rego
+          opa fmt --fail policies/opa/rbac_guardrails.rego
+
+      - name: Check Rego syntax
+        run: |
+          opa check policies/opa/storage_guardrails.rego policies/opa/rbac_guardrails.rego
+
+      - name: Evaluate storage guardrail sample
+        run: |
+          opa eval --format raw -d policies/opa/storage_guardrails.rego -i policies/opa/sample_inputs/storage_account_violation.json "count(data.sentinel.storage.deny)" | grep -Eq '^[1-9][0-9]*$'
+
+      - name: Evaluate RBAC guardrail sample
+        run: |
+          opa eval --format raw -d policies/opa/rbac_guardrails.rego -i policies/opa/sample_inputs/rbac_assignment_violation.json "count(data.sentinel.rbac.deny)" | grep -Eq '^[1-9][0-9]*$'

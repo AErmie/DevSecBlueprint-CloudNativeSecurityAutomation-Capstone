@@ -1,0 +1,5 @@
+{
+  "resource_type": "azurerm_role_assignment",
+  "role_definition_name": "Owner",
+  "scope": "/subscriptions/00000000-0000-0000-0000-000000000000"
+}

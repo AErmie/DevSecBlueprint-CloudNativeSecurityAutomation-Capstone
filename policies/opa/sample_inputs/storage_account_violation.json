@@ -1,0 +1,5 @@
+{
+  "resource_type": "azurerm_storage_account",
+  "public_network_access_enabled": true,
+  "shared_access_key_enabled": true
+}
